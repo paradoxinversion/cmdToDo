@@ -4,9 +4,10 @@ const complete = require("./commands/complete.js");
 const deleteTask = require("./commands/delete.js");
 const list = require("./commands/list");
 const reset = require("./commands/fullreset");
-// const add = require("./commands/add.js");
+
 let command = process.argv[2];
 let argument = process.argv[3];
+
 switch (command){
 case "add":
   add(argument);
@@ -21,11 +22,11 @@ case "list":
   list(argument);
   break;
 case "reset":
-  console.log(process.argv);
   if (process.argv[3] == "reset"){
     reset();
   }else{
-    console.log("You must type reset twice (with a space) to reset data.");
+    console.log("You must type reset twice (with a space) to reset data---v");
+    console.log("$ node tasks.js reset reset");
   }
   break;
 default:

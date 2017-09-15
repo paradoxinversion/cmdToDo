@@ -1,7 +1,10 @@
 const {getJSON, serializeJSON} = require("../utilities.js");
 
 module.exports = function(taskID){
-  let jsonData = getJSON();
+  getJSON(deleteTask, taskID);
+};
+
+function deleteTask(jsonData, taskID){
   let taskToDelete = jsonData.currentTasks.find(function(element){
     if (element.id == taskID){
       return element;
@@ -20,6 +23,7 @@ module.exports = function(taskID){
       return false;
     }
   });
+  console.log(`Deleted task ${taskID}: ${taskToDelete.description}`);
   jsonData.currentTasks = modifiedArray;
   serializeJSON(jsonData);
-};
+}

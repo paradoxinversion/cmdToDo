@@ -4,7 +4,11 @@ module.exports = function(){
   let header = "ID Description\n" +
                "-- -----------";
   console.log(header);
-  let jsonData = getJSON();
+  getJSON(printListItems);
+};
+
+function printListItems(jsonData)
+{
   if (jsonData.currentTasks.length == 0){
     console.log("You have no tasks.");
     return 1;
@@ -12,7 +16,7 @@ module.exports = function(){
     jsonData.currentTasks.forEach(function(element){
       console.log(element.id + " " + element.description);
     });
+    console.log(`You have ${jsonData.currentTasks.length} tasks.`);
     return 1;
   }
-  return 0;
-};
+}

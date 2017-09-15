@@ -1,9 +1,13 @@
 const {getJSON, serializeJSON} = require("../utilities.js");
 
-module.exports = function(){
-  let jsonData = getJSON();
+function fullReset(jsonData){
   jsonData.totalTasks = 0;
   jsonData.currentTasks = [];
   serializeJSON(jsonData);
   console.log("All tasks and data have been reset.");
+}
+
+module.exports = function(){
+  getJSON(fullReset);
+
 };
