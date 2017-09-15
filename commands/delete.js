@@ -13,13 +13,13 @@ module.exports = function(taskID){
     return;
   }
 
-  let modArr = jsonData.currentTasks.filter(function(element){
+  let modifiedArray = jsonData.currentTasks.filter(function(element){
     if (element != taskToDelete){
       return true;
     }else{
       return false;
     }
   });
-  jsonData.currentTasks = modArr;
+  jsonData.currentTasks = modifiedArray;
   serializeJSON(jsonData);
 };
