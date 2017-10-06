@@ -4,12 +4,24 @@
   "description": "",
   "main": "tasks.js",
   "scripts": {
-    "test": "./node_modules/.bin/mocha --reporter spec"
+    "test": "./node_modules/.bin/mocha --reporter spec",
+    "create-db": "createdb tododb",
+    "create-db-test": "createdb tododb_test",
+    "setup-db" : "psql tododb < ./database/schema.sql",
+    "setup-db-test" : "psql tododb_test < ./database/schema.sql",
+    "seed-db-test" : "psql tododb_test < ./database/seed.sql",
+    "clear-db" : "psql tododb < ./database/clear.sql",
+    "clear-db-test" : "psql tododb_test < ./database/clear.sql",
+    "remove-db" : "psql -c 'DROP DATABASE tododb'",
+    "remove-db-test" : "psql -c 'DROP DATABASE tododb_test'"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "chai": "^4.1.2",
     "mocha": "^3.5.3"
+  },
+  "dependencies": {
+    "pg-promise": "^6.10.2"
   }
 }

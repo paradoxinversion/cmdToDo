@@ -1,15 +1,8 @@
-
-const {getJSON, TaskObject, serializeJSON} = require("../utilities.js");
-
-
+const insertTask = require("../database/queries").insertTask;
+const pgp = require("../database/client").pgp;
 module.exports = function(taskDescription){
-  getJSON(createTaskObject, taskDescription);
+  insertTask(taskDescription).then(data =>{
+    console.log(`Added Task ${data.id}: ${data.description}` );
+  });
+  pgp.end();
 };
-
-function createTaskObject(jsonData, taskDescription){
-  let newTask = new TaskObject(jsonData.totalTasks, taskDescription);
-  jsonData.currentTasks.push(newTask);
-  jsonData.totalTasks++;
-  console.log("Create dTask" + newTask.id);
-  serializeJSON(jsonData);
-}

@@ -1,14 +1,9 @@
-const {getJSON, serializeJSON} = require("../utilities.js");
+const markComplete = require("../database/queries").markComplete;
+const pgp = require("../database/client").pgp;
 
 module.exports = function(taskID){
-  getJSON(complete, taskID);
+  markComplete(taskID).then(data =>{
+    console.log(`Complete task ${taskID}: ${data.description}`);
+  });
+  pgp.end();
 };
-
-function complete(jsonData, taskID){
-  if (taskID > -1 && taskID < jsonData.currentTasks.length){
-    jsonData.currentTasks[taskID].isComplete = true;
-  }
-  console.log(`Complete task ${taskID}: ${jsonData.currentTasks[taskID].description()}`);
-  serializeJSON(jsonData);
-
-}
